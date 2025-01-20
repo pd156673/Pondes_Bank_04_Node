@@ -73,7 +73,14 @@ app.get('/', (req, res) => {
 	// Das res-Objekt kann noch mehr als nur eine Zeichenkette an den
 	// Browser zu senden. Das res-Objekt kann mit der Funktion render()
 	// eine HTML-Datei an den Browser senden.
-	res.render('index.ejs',{});
+
+	if(kunde.IstEingeloggt){
+		res.render('index.ejs',{});
+
+	}else{
+		res.render('login.ejs',{});
+	}
+	
 });
 
 // Wenn im Browser die Adresse .../agb aufgerufen wird, wird der Server aufgefordert,
@@ -184,7 +191,7 @@ app.post('/geldAnlegen', (req, res) => {
 
 app.get('/login', (req, res) => {
 	res.render('login.ejs',{
-		Meldung: "Alles easy."
+		Meldung: "Bitte Benutzername und Kennwort eingeben."
 	});
 });
 
@@ -204,6 +211,9 @@ app.post('/login', (req, res) => {
 	if(kunde.Benutzername == benutzername && kunde.Kennwort == kennwort){
 		console.log("Die Zugangsdaten wurden korrekt eingegeben.")
 		meldung = "Die Zugangsdaten wurden korrekt eingegeben"
+		res.render('index.ejs',{
+			Meldung: meldung
+		});
 	}else{
 		console.log("Die Zugangsdaten wurden NICHT korrekt eingegeben.")
 		meldung = "Die Zugangsdaten wurden NICHT korrekt eingegeben"
