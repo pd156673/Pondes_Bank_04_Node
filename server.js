@@ -65,6 +65,13 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
 
+// IN der Banking-App sollen Cookies wie folgt eingesetzt werden
+// 1. WEnn sich der Kunde an der App anmeldet, wird ein Cookie in seinem Browser gespeichert 
+// Der Cookie enthält seine Kundendaten.
+// Immer wenn der Kunde nach der Anmeldung in der App einen Button drückt, werden
+// seine Kundendaten vom Browser an den Server übergeben. Der Server weiss dadurch, mit welchem
+// Kunden er es zu tun hat. So ermöglichen wir, dass mehrere Kunden gleichzeitig mit dem SErver ineragieren können. 
+
 	// res ist die Antwort des Servers an den Browser.
 	// send() ist die Anweisung etwas an den Browser zu senden
 	// 'Hello ...' ist der Wert, der an die Anweisung send() übergeben wird
